@@ -25,6 +25,8 @@ class MainActivity : AppCompatActivity() {
 
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.newsNavHostFragment) as NavHostFragment
         val navController= navHostFragment.navController
+        val kunal = "Kunal Singh Chauhan"
         binding.bottomNavigationView.setupWithNavController(navController)
+
     }
 }
