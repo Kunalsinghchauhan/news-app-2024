@@ -1,0 +1,21 @@
+<!-- res/drawable/rounded_button.xml -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape>
+            <corners android:radius="8dp"/>
+            <gradient
+                android:startColor="#388E3C"
+                android:endColor="#4CAF50"
+                android:angle="270"/>
+        </shape>
+    </item>
+    <item>
+        <shape>
+            <corners android:radius="8dp"/>
+            <gradient
+                android:startColor="#4CAF50"
+                android:endColor="#388E3C"
+                android:angle="270"/>
+        </shape>
+    </item>
+</selector>
