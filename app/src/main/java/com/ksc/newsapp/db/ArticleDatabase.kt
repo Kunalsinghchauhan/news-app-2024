@@ -13,9 +13,9 @@ import com.ksc.newsapp.models.Article
     version = 1
 )
 @TypeConverters(Converter::class)
-
 abstract class ArticleDatabase : RoomDatabase() {
     abstract fun getArticleDAO(): ArticleDAO
+
     companion object {
         @Volatile
         private var instance: ArticleDatabase? = null

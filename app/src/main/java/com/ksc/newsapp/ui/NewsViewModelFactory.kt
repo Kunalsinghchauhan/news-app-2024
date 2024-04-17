@@ -3,11 +3,11 @@ package com.ksc.newsapp.ui
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.ksc.newsapp.repository.Repository
+import com.ksc.newsapp.repository.NewsRepository
 
-class NewsViewModelFactory(val application: Application,val newsRepository: Repository) : ViewModelProvider.Factory{
+class NewsViewModelFactory(private val newsRepository: NewsRepository) : ViewModelProvider.Factory{
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return NewsViewModel(application,newsRepository) as T
+        return NewsViewModel(newsRepository) as T
 
     }
 

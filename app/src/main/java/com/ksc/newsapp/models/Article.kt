@@ -5,7 +5,6 @@ import androidx.room.PrimaryKey
 import java.io.Serializable
 
 @Entity(tableName = "article")
-
 data class Article(
     @PrimaryKey(autoGenerate = true)
     val id: Int? = null,

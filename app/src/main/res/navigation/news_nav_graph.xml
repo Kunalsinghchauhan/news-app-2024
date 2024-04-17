@@ -6,31 +6,41 @@
     app:startDestination="@id/headlinesFragment">
 
     <fragment
-        android:id="@+id/articleFragment"
-        android:name="com.ksc.newsapp.ui.fragments.ArticleFragment"
-        android:label="fragment_article"
-        tools:layout="@layout/fragment_article" >
-        <argument
-            android:name="article"
-            app:argType="com.ksc.newsapp.models.Article"
-            />
-
-    </fragment>
-    <fragment
         android:id="@+id/headlinesFragment"
         android:name="com.ksc.newsapp.ui.fragments.HeadlinesFragment"
         android:label="HeadlinesFragment">
         <action
             android:id="@+id/action_headlinesFragment_to_articleFragment"
-            app:destination="@id/articleFragment" />
+            app:destination="@id/articleFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
     </fragment>
+
+    <fragment
+        android:id="@+id/articleFragment"
+        android:name="com.ksc.newsapp.ui.fragments.ArticleFragment"
+        android:label="fragment_article"
+        tools:layout="@layout/fragment_article">
+        <argument
+            android:name="article"
+            app:argType="com.ksc.newsapp.models.Article" />
+
+    </fragment>
+
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.ksc.newsapp.ui.fragments.SearchFragment"
+        android:name="com.ksc.newsapp.ui.fragments.SearchNewsFragment"
         android:label="SearchFragment">
         <action
             android:id="@+id/action_searchFragment_to_articleFragment"
-            app:destination="@id/articleFragment" />
+            app:destination="@id/articleFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
     <fragment
         android:id="@+id/favouritesFragment"
@@ -39,6 +49,10 @@
         tools:layout="@layout/fragment_favourites">
         <action
             android:id="@+id/action_favouritesFragment_to_articleFragment"
-            app:destination="@id/articleFragment" />
+            app:destination="@id/articleFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
 </navigation>
