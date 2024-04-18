@@ -4,6 +4,7 @@ plugins {
     id("com.google.devtools.ksp")
     id("androidx.navigation.safeargs.kotlin")
 }
+
 android {
     namespace = "com.ksc.newsapp"
     compileSdk = 34

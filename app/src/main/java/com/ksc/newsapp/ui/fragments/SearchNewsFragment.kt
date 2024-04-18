@@ -8,10 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ksc.newsapp.R
 import com.ksc.newsapp.adapters.NewsAdapter
-import com.ksc.newsapp.databinding.FragmentHeadlinesBinding
 import com.ksc.newsapp.databinding.FragmentSearchBinding
 import com.ksc.newsapp.ui.NewsActivity
 import com.ksc.newsapp.ui.NewsViewModel
@@ -20,6 +20,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+
 
 class SearchNewsFragment : Fragment() {
     private lateinit var viewModel: NewsViewModel
@@ -41,11 +42,22 @@ class SearchNewsFragment : Fragment() {
         viewModel = (activity as NewsActivity).newsViewModel
         setupRecyclerView()
 
+
+        newsAdapter.setOnItemClickListener {
+            val bundle: Bundle = Bundle().apply {
+                putSerializable("article", it)
+            }
+            findNavController().navigate(
+                R.id.action_searchFragment_to_articleFragment,
+                bundle
+            )
+        }
+
         var job: Job? = null
         binding.etSearch.addTextChangedListener { editable ->
             job?.cancel()
             job = MainScope().launch {
-                delay(600)
+                delay(400)
                 editable.let {
                     if (editable.toString().isNotEmpty()) {
                         viewModel.getSearchNews(editable.toString())

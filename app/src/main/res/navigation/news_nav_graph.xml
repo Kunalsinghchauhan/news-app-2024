@@ -55,4 +55,7 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"/>
     </fragment>
+    <argument
+        android:name="article"
+        app:argType="com.ksc.newsapp.models.Article" />
 </navigation>

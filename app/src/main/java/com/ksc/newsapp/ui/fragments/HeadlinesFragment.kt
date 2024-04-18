@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ksc.newsapp.R
 import com.ksc.newsapp.adapters.NewsAdapter
@@ -39,6 +40,19 @@ class HeadlinesFragment : Fragment() {
         viewModel = (activity as NewsActivity).newsViewModel
         setupRecyclerView()
 
+        newsAdapter.setOnItemClickListener {
+            val bundle = Bundle().apply {
+                putSerializable("article", it)
+            }
+
+            findNavController().navigate(
+                R.id.action_headlinesFragment_to_articleFragment,
+                bundle
+            )
+        }
+
+
+
         viewModel.breakingNews.observe(viewLifecycleOwner, Observer {
             when (it) {
                 is Resource.Success -> {
@@ -60,7 +74,6 @@ class HeadlinesFragment : Fragment() {
                 }
             }
         })
-
     }
 
     private fun hideProgressBar() {
@@ -78,6 +91,4 @@ class HeadlinesFragment : Fragment() {
             layoutManager = LinearLayoutManager(activity)
         }
     }
-
-
 }

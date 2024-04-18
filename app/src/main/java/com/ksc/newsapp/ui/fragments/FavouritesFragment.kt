@@ -5,16 +5,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.ksc.newsapp.R
+import com.ksc.newsapp.adapters.NewsAdapter
 import com.ksc.newsapp.databinding.FragmentFavouritesBinding
-import com.ksc.newsapp.databinding.FragmentHeadlinesBinding
 import com.ksc.newsapp.ui.NewsActivity
 import com.ksc.newsapp.ui.NewsViewModel
 
 class FavouritesFragment : Fragment() {
     private lateinit var viewModel: NewsViewModel
     private lateinit var binding: FragmentFavouritesBinding
-
+    private lateinit var newsAdapter: NewsAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,9 +27,29 @@ class FavouritesFragment : Fragment() {
         binding = FragmentFavouritesBinding.inflate(inflater, container, false)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as NewsActivity).newsViewModel
+        setupRecyclerView()
+
+        newsAdapter.setOnItemClickListener {
+            val bundle: Bundle = Bundle().apply {
+                putSerializable("article", it)
+            }
+            findNavController().navigate(
+                R.id.action_favouritesFragment_to_articleFragment,
+                bundle
+            )
+        }
+
     }
 
+    private fun setupRecyclerView() {
+        newsAdapter = NewsAdapter()
+        binding.recyclerViewFavourites.apply {
+            adapter = newsAdapter
+            layoutManager = LinearLayoutManager(activity)
+        }
+    }
 }

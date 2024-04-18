@@ -42,10 +42,11 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
 
         holder.apply {
             Glide.with(itemView.context).load(article.urlToImage).into(articleImage)
-            articleSource.text = article.source.name
+            articleSource.text = article.source?.name
             articleTitle.text = article.title
             articleDescription.text = article.description
             articleDateTime.text = article.publishedAt
+
             itemView.setOnClickListener {
                 onItemClickListener?.invoke(article)
             }
