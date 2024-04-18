@@ -5,12 +5,12 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.ksc.newsapp.databinding.ActivityNewsBinding
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.setupWithNavController
 import com.ksc.newsapp.R
 import com.ksc.newsapp.db.ArticleDatabase
 import com.ksc.newsapp.repository.NewsRepository
+import com.ksc.newsapp.ui.fragments.FavouritesFragment
+import com.ksc.newsapp.ui.fragments.HeadlinesFragment
+import com.ksc.newsapp.ui.fragments.SearchNewsFragment
 
 class NewsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNewsBinding
@@ -24,11 +24,25 @@ class NewsActivity : AppCompatActivity() {
         val viewModelFactory = NewsViewModelFactory(newsRepository)
         newsViewModel = ViewModelProvider(this, viewModelFactory)[NewsViewModel::class.java]
 
+        binding.bottomNavigationView.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.headline_fragment -> replaceFragments(HeadlinesFragment())
+                R.id.favourite_fragment -> replaceFragments(FavouritesFragment())
+                R.id.search_fragment -> replaceFragments(SearchNewsFragment())
+                else -> {
+                }
+            }
+            true
+        }
 
-        val newsNavHostFragment =
-            supportFragmentManager.findFragmentById(R.id.newsNavHostFragment) as NavHostFragment
-        val navController = newsNavHostFragment.navController
-        binding.bottomNavigationView.setupWithNavController(navController)
+    }
+
+    fun replaceFragments(fragment: Fragment) {
+        val fragmentsManager = supportFragmentManager
+        val fragmentsTransaction = fragmentsManager.beginTransaction()
+        fragmentsTransaction.replace(R.id.newsNavHostFragment, fragment)
+        fragmentsTransaction.commit()
+
     }
 }
 

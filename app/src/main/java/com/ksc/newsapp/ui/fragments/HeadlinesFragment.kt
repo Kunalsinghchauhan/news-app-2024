@@ -6,6 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ksc.newsapp.R
@@ -35,7 +38,6 @@ class HeadlinesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as NewsActivity).newsViewModel
         setupRecyclerView()
-
 
         viewModel.breakingNews.observe(viewLifecycleOwner, Observer {
             when (it) {
@@ -76,4 +78,6 @@ class HeadlinesFragment : Fragment() {
             layoutManager = LinearLayoutManager(activity)
         }
     }
+
+
 }

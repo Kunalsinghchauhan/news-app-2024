@@ -1,11 +1,13 @@
 package com.ksc.newsapp.ui
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ksc.newsapp.models.NewsResponse
 
 import com.ksc.newsapp.repository.NewsRepository
+import com.ksc.newsapp.ui.fragments.HeadlinesFragment
 import com.ksc.newsapp.utils.Resource
 import kotlinx.coroutines.launch
 import retrofit2.Response
@@ -18,9 +20,8 @@ class NewsViewModel(
 
     val searchNews: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
     private var searchNewsPage = 1
-
     init {
-        getBreakingNews("in")
+        getBreakingNews("us")
     }
 
     private fun getBreakingNews(countryCode: String) = viewModelScope.launch {
@@ -52,4 +53,5 @@ class NewsViewModel(
         }
         return Resource.Error(response.message())
     }
+
 }
