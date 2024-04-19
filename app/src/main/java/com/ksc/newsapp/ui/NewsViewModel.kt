@@ -1,9 +1,10 @@
 package com.ksc.newsapp.ui
 
-import android.util.Log
+
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ksc.newsapp.models.Article
 import com.ksc.newsapp.models.NewsResponse
 
 import com.ksc.newsapp.repository.NewsRepository
@@ -21,7 +22,7 @@ class NewsViewModel(
     private var searchNewsPage = 1
 
     init {
-        getBreakingNews("in")
+        getBreakingNews("us")
     }
 
     private fun getBreakingNews(countryCode: String) = viewModelScope.launch {
@@ -55,5 +56,17 @@ class NewsViewModel(
         }
         return Resource.Error(response.message())
     }
+
+    fun favouriteArticle(article: Article) = viewModelScope.launch {
+        newsRepository.upsert(article)
+    }
+
+    fun getFavouriteNews() = newsRepository.getFavouriteNews()
+
+    fun deleteArticle(article: Article) = viewModelScope.launch {
+        newsRepository.deleteArticle(article)
+    }
+
+
 
 }

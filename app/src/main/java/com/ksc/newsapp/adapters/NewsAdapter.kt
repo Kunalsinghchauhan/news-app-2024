@@ -1,16 +1,20 @@
 package com.ksc.newsapp.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 import com.ksc.newsapp.R
 import com.ksc.newsapp.models.Article
+import com.ksc.newsapp.ui.NewsActivity
 
 class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
 
@@ -42,14 +46,16 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
 
         holder.apply {
             Glide.with(itemView.context).load(article.urlToImage).into(articleImage)
-            articleSource.text = article.source?.name
+//            articleSource.text = article.source?.name
             articleTitle.text = article.title
             articleDescription.text = article.description
             articleDateTime.text = article.publishedAt
 
             itemView.setOnClickListener {
+                Snackbar.make(itemView, "Ruk Khul Raha Hai", Snackbar.LENGTH_LONG).show()
                 onItemClickListener?.invoke(article)
             }
+
         }
     }
 
@@ -59,7 +65,8 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
 
     inner class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val articleImage: ImageView = itemView.findViewById(R.id.iv_article_image)
-        val articleSource: TextView = itemView.findViewById(R.id.tv_article_source)
+
+        //        val articleSource: TextView = itemView.findViewById(R.id.tv_article_source)
         val articleTitle: TextView = itemView.findViewById(R.id.tv_article_title)
         val articleDescription: TextView = itemView.findViewById(R.id.tv_article_description)
         val articleDateTime: TextView = itemView.findViewById(R.id.tv_article_date_time)

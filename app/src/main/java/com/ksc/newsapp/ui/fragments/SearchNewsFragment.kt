@@ -46,7 +46,10 @@ class SearchNewsFragment : Fragment() {
         newsAdapter.setOnItemClickListener {
             val bundle: Bundle = Bundle().apply {
                 putSerializable("article", it)
+
             }
+
+
             findNavController().navigate(
                 R.id.action_searchFragment_to_articleFragment,
                 bundle
@@ -57,7 +60,7 @@ class SearchNewsFragment : Fragment() {
         binding.etSearch.addTextChangedListener { editable ->
             job?.cancel()
             job = MainScope().launch {
-                delay(400)
+                delay(300)
                 editable.let {
                     if (editable.toString().isNotEmpty()) {
                         viewModel.getSearchNews(editable.toString())

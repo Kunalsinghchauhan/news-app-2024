@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.webkit.WebViewClient
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.snackbar.Snackbar
 import com.ksc.newsapp.databinding.FragmentArticleBinding
 import com.ksc.newsapp.ui.NewsActivity
 import com.ksc.newsapp.ui.NewsViewModel
@@ -23,7 +24,6 @@ class ArticleFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         binding = FragmentArticleBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -39,5 +39,13 @@ class ArticleFragment : Fragment() {
             webViewClient = WebViewClient()
             loadUrl(article.url)
         }
+
+        binding.fbtnFabArticleFm.setOnClickListener {
+            viewModel.favouriteArticle(article)
+            Snackbar.make(view, "Article Saved Successfully", Snackbar.LENGTH_SHORT).show()
+        }
+
     }
+
 }
+

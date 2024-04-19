@@ -12,9 +12,9 @@ class NewsRepository(private val db: ArticleDatabase) {
     suspend fun getSearchEverything(searchQuery: String, pageNumber: Int) =
         RetrofitInstance.api.searchEverything(searchQuery,pageNumber)
 
-//    suspend fun upsert(article: Article) = db.getArticleDAO().upsert(article)
-//    fun getFavouriteNews() = db.getArticleDAO().getAllArticle()
-//    suspend fun deleteArticle(article: Article) = db.getArticleDAO().deleteArticle(article)
+    suspend fun upsert(article: Article) = db.getArticleDAO().upsert(article)
+    fun getFavouriteNews() = db.getArticleDAO().getAllArticle()
+    suspend fun deleteArticle(article: Article) = db.getArticleDAO().deleteArticle(article)
 
 
 }

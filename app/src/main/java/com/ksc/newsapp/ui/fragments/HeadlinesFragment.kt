@@ -6,9 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,7 +15,6 @@ import com.ksc.newsapp.ui.NewsActivity
 import com.ksc.newsapp.ui.NewsViewModel
 import com.ksc.newsapp.databinding.FragmentHeadlinesBinding
 import com.ksc.newsapp.utils.Resource
-import kotlinx.coroutines.Job
 
 class HeadlinesFragment : Fragment() {
     private lateinit var viewModel: NewsViewModel
@@ -30,7 +26,6 @@ class HeadlinesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // Inflate the layout using ViewBinding
         binding = FragmentHeadlinesBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -44,13 +39,8 @@ class HeadlinesFragment : Fragment() {
             val bundle = Bundle().apply {
                 putSerializable("article", it)
             }
-
-            findNavController().navigate(
-                R.id.action_headlinesFragment_to_articleFragment,
-                bundle
-            )
+            findNavController().navigate(R.id.action_headlinesFragment_to_articleFragment, bundle)
         }
-
 
 
         viewModel.breakingNews.observe(viewLifecycleOwner, Observer {

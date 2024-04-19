@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.ksc.newsapp.databinding.ActivityNewsBinding
 import com.ksc.newsapp.R
 import com.ksc.newsapp.db.ArticleDatabase
@@ -26,6 +28,7 @@ class NewsActivity : AppCompatActivity() {
         newsViewModel = ViewModelProvider(this, viewModelFactory)[NewsViewModel::class.java]
 
 
+
         binding.bottomNavigationView.setOnItemSelectedListener {
             when (it.itemId) {
                 R.id.headline_fragment -> replaceFragments(HeadlinesFragment())
@@ -36,15 +39,14 @@ class NewsActivity : AppCompatActivity() {
             }
             true
         }
-
     }
+
 
     private fun replaceFragments(fragment: Fragment) {
         val fragmentsManager = supportFragmentManager
         val fragmentsTransaction = fragmentsManager.beginTransaction()
         fragmentsTransaction.replace(R.id.newsNavHostFragment, fragment)
         fragmentsTransaction.commit()
-
     }
 }
 
