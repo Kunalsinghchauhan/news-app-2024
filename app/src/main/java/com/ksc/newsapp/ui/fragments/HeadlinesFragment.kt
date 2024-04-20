@@ -51,14 +51,12 @@ class HeadlinesFragment : Fragment() {
                         newsAdapter.differ.submitList(newsResponse.articles)
                     }
                 }
-
                 is Resource.Error -> {
                     hideProgressBar()
                     it.message?.let { message ->
                         Log.e("BreakingNewsFragment", "Error Occurred $message")
                     }
                 }
-
                 is Resource.Loading -> {
                     showProgressBar()
                 }

@@ -1,5 +1,6 @@
 package com.ksc.newsapp.ui.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -63,7 +64,7 @@ class SearchNewsFragment : Fragment() {
                 delay(300)
                 editable.let {
                     if (editable.toString().isNotEmpty()) {
-                        viewModel.getSearchNews(editable.toString())
+                        viewModel.getSearchNews(editable.toString(), requireContext())
                     }
                 }
             }

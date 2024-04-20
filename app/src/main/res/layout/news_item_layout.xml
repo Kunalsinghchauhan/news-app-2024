@@ -20,6 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:text="SOURCE"
+        android:visibility="invisible"
         android:fontFamily="@font/poppins"
         android:textColor="@color/nav_red_light"
         app:layout_constraintStart_toStartOf="parent"

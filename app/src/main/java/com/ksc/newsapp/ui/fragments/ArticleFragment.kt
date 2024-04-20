@@ -37,10 +37,11 @@ class ArticleFragment : Fragment() {
 
         binding.webviewArticle.apply {
             webViewClient = WebViewClient()
-            loadUrl(article.url)
+            article.url?.let { loadUrl(it) }
         }
 
         binding.fbtnFabArticleFm.setOnClickListener {
+            binding.fbtnFabArticleFm.isEnabled = false
             viewModel.favouriteArticle(article)
             Snackbar.make(view, "Article Saved Successfully", Snackbar.LENGTH_SHORT).show()
         }

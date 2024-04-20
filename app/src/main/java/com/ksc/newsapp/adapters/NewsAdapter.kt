@@ -46,7 +46,6 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
 
         holder.apply {
             Glide.with(itemView.context).load(article.urlToImage).into(articleImage)
-//            articleSource.text = article.source?.name
             articleTitle.text = article.title
             articleDescription.text = article.description
             articleDateTime.text = article.publishedAt
@@ -65,8 +64,6 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
 
     inner class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val articleImage: ImageView = itemView.findViewById(R.id.iv_article_image)
-
-        //        val articleSource: TextView = itemView.findViewById(R.id.tv_article_source)
         val articleTitle: TextView = itemView.findViewById(R.id.tv_article_title)
         val articleDescription: TextView = itemView.findViewById(R.id.tv_article_description)
         val articleDateTime: TextView = itemView.findViewById(R.id.tv_article_date_time)

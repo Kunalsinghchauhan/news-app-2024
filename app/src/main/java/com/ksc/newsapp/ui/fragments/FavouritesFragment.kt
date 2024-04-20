@@ -10,7 +10,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.SnapHelper
 import com.google.android.material.snackbar.Snackbar
 import com.ksc.newsapp.R
 import com.ksc.newsapp.adapters.NewsAdapter
@@ -79,7 +78,6 @@ class FavouritesFragment : Fragment() {
         ItemTouchHelper(itemTouchHelperCallBack).apply {
             attachToRecyclerView(binding.recyclerViewFavourites)
         }
-
 
         viewModel.getFavouriteNews().observe(viewLifecycleOwner, Observer { article ->
             newsAdapter.differ.submitList(article)

@@ -12,7 +12,6 @@ import com.ksc.newsapp.models.Article
     entities = [Article::class],
     version = 1
 )
-@TypeConverters(Converter::class)
 abstract class ArticleDatabase : RoomDatabase() {
     abstract fun getArticleDAO(): ArticleDAO
 
